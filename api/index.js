@@ -17,6 +17,15 @@ const __dirname = dirname(__filename);
 app.use(express.static(join(__dirname, '../public')));
 app.set('views', join(__dirname, '../views'));
 
+// Conectar ao MongoDB Atlas
+const url = "mongodb+srv://aluno:aluno@cluster0.cdfrk.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0";
+mongoose.connect(url, {
+  useNewUrlParser: true,
+  useUnifiedTopology: true
+})
+.then(() => console.log("✅ MongoDB conectado com sucesso!"))
+.catch(err => console.error("❌ Erro ao conectar ao MongoDB:", err));
+
 // Rotas
 app.use(routes)
 app.listen(3001)
