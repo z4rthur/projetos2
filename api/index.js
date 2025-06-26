@@ -3,6 +3,7 @@ import { fileURLToPath } from 'url';
 import { dirname, join } from 'path';
 import routes from '../routes/route.js'; // rotas externas
 import { createServer } from 'http';
+import mongoose from 'mongoose';
 
 const app = express();
 
