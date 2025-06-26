@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8" />
+  <title>Lista de Clientes</title>
+  <link rel="stylesheet" href="/css/style.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+  <script>
+    function searchClients() {
+      const input = document.getElementById('searchInput');
+      const filter = input.value.toUpperCase();
+      const table = document.querySelector('table');
+      const tr = table.getElementsByTagName('tr');
+
+      // Loop through all table rows, and hide those who don't match the search query
+      for (let i = 1; i < tr.length; i++) {
+        const tdNome = tr[i].getElementsByTagName('td')[0];
+        const tdEmail = tr[i].getElementsByTagName('td')[1];
+        const tdTelefone = tr[i].getElementsByTagName('td')[2];
+        
+        if (tdNome || tdEmail || tdTelefone) {
+          const txtValueNome = tdNome.textContent || tdNome.innerText;
+          const txtValueEmail = tdEmail.textContent || tdEmail.innerText;
+          const txtValueTelefone = tdTelefone.textContent || tdTelefone.innerText;
+          
+          if (txtValueNome.toUpperCase().indexOf(filter) > -1 || 
+              txtValueEmail.toUpperCase().indexOf(filter) > -1 || 
+              txtValueTelefone.toUpperCase().indexOf(filter) > -1) {
+            tr[i].style.display = "";
+          } else {
+            tr[i].style.display = "none";
+          }
+        }
+      }
+    }
+  </script>
+</head>
+<body>
+
+  <header class="header">
+    <div class="header-top">
+      <h1 class="logo">AutoPrime</h1>
+      <div class="header-info">
+        <span><i class="fas fa-map-marker-alt"></i> Rua Paralela, 404 - Centro</span>
+        <span><i class="fas fa-phone-alt"></i> (53) 99702-3850</span>
+        <span><i class="fas fa-clock"></i> Seg a Sáb: 8h - 18h</span>
+        <span><i class="fas fa-user"></i> Painel</span>
+      </div>
+    </div>
+
+    <nav class="header-buttons">
+      <a href="/" class="btn add-btn"><i class="fas fa-home"></i> Início</a>
+      <a href="/admin/veiculo/lst" class="nav-btn"><i class="fas fa-car"></i> Veículos</a>
+      <a href="/admin/venda/lst" class="nav-btn"><i class="fas fa-receipt"></i> Vendas</a>
+      <a href="https://wa.me/5553997023850" target="_blank" class="nav-btn"><i class="fab fa-whatsapp"></i> Atendimento</a>
+    </nav>
+  </header>
+
+  <header class="header-clientes">
+    <h1>Lista de Clientes</h1>
+    <div class="search-container">
+      <input type="text" id="searchInput" onkeyup="searchClients()" placeholder="Pesquisar clientes...">
+      <i class="fas fa-search search-icon"></i>
+    </div>
+    <a href="/admin/cliente/add" class="btn add-btn"><i class="fas fa-user-plus"></i> Adicionar Cliente</a>
+  </header>
+
+  <main class="container">
+    <% if (clientes.length > 0) { %>
+      <table id="clientesTable">
+        <thead>
+          <tr>
+            <th>Nome</th>
+            <th>Email</th>
+            <th>Telefone</th>
+            <th>Ações</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% clientes.forEach(cliente => { %>
+            <tr>
+              <td><%= cliente.nome %></td>
+              <td><%= cliente.email %></td>
+              <td><%= cliente.telefone %></td>
+              <td class="action-buttons">
+              
+                <a href="/admin/cliente/edt/<%= cliente._id %>" class="edit-btn"><i class="fas fa-edit"></i> Editar</a>  
+                <form action="/admin/cliente/del/<%= cliente._id %>" method="POST" style="display:inline;">
+                  <button type="submit" class="delete-btn" onclick="return confirm('Tem certeza que deseja excluir este cliente?')">
+                    <i class="fas fa-trash-alt"></i> Excluir
+                  </button>
+                </form>
+              </td>
+            </tr>
+          <% }); %>
+        </tbody>
+      </table>
+    <% } else { %>
+      <p class="center">Nenhum cliente cadastrado ainda.</p>
+    <% } %>
+  </main>
+
+  <footer>
+    <p>&copy; 2025 AutoPrime - Sistema de Concessionária</p>
+  </footer>
+
+</body>
+</html>

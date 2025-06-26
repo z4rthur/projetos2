@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Adicionar Veículo | AutoPrime</title>
+
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+
+  <!-- Estilos personalizados -->
+  <link rel="stylesheet" href="/css/style.css">
+  <link rel="stylesheet" href="/css/form-veiculo.css">
+</head>
+<body>
+
+  <!-- Cabeçalho -->
+  <header class="header-topo">
+    <div class="container-header">
+      <h1 class="logo">AutoPrime</h1>
+      <nav class="nav-header">
+        <a href="/"><i class="fas fa-home"></i> Início</a>
+        <a href="/admin/veiculo/lst"><i class="fas fa-car"></i> Listar Veículos</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Conteúdo -->
+  <main class="container">
+    <h2 class="titulo">Adicionar Novo Veículo</h2>
+
+    <!-- Formulário de adição de veículo -->
+    <form action="/admin/veiculo/add" method="POST" enctype="multipart/form-data">
+      <div class="form-group">
+        <label for="modelo">Modelo</label>
+        <input type="text" id="modelo" name="modelo" required>
+      </div>
+
+      <div class="form-group">
+        <label for="marca">Marca</label>
+        <input type="text" id="marca" name="marca" required>
+      </div>
+
+      <div class="form-group">
+        <label for="ano">Ano</label>
+        <input type="number" id="ano" name="ano" required>
+      </div>
+
+      <div class="form-group">
+        <label for="preco">Preço</label>
+        <input type="number" id="preco" name="preco" step="0.01" required>
+      </div>
+
+      <div class="form-group">
+        <label for="imagem">Imagem do veículo</label>
+        <input type="file" id="imagem" name="imagem" accept="image/*" required>
+      </div>
+
+      <div class="form-actions">
+        <button type="submit" class="btn-primary"><i class="fas fa-save"></i> Salvar Veículo</button>
+      </div>
+    </button>
+    <button type="button" class="btn back-btn" onclick="history.back()">
+      <i class="fas fa-arrow-left"></i> Cancelar
+    </button>
+    </form>
+  </main>
+
+  <footer>
+    <p>&copy; 2025 Concessionária AutoPrime - Todos os direitos reservados</p>
+  </footer>
+
+</body>
+</html>

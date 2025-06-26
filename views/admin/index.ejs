@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Painel Administrativo da Concessionária</title>
+
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
+  <!-- CSS personalizado -->
+  <link rel="stylesheet" href="/css/style.css" />
+  
+</head>
+<body>
+
+  <!-- Cabeçalho com nome, info e botões -->
+  <header class="header">
+    <div class="header-top">
+      <h1 class="logo">AutoPrime</h1>
+      <div class="header-info">
+        <span><i class="fas fa-map-marker-alt"></i> Rua Paralela, 404 - Centro</span>
+        <span><i class="fas fa-phone-alt"></i> (53) 99702-3850</span>
+        <span><i class="fas fa-clock"></i> Seg a Sáb: 8h - 18h</span>
+        <span><i class="fas fa-user"></i> Painel</span>
+
+        <span><i class="fas fa-user"></i> Admin</span>
+      </div>
+    </div>
+    <nav class="header-buttons">
+      <a href="/admin/veiculo/lst" class="nav-btn"><i class="fas fa-car"></i> Veículos</a>
+      <a href="/admin/cliente/lst" class="nav-btn"><i class="fas fa-user"></i> Clientes</a>
+      <a href="/admin/venda/lst" class="nav-btn"><i class="fas fa-receipt"></i> Vendas</a>
+      <a href="https://wa.me/555397023850" target="_blank" class="nav-btn"><i class="fab fa-whatsapp"></i> Atendimento</a>
+    </nav>
+  </header>
+
+  <!-- Destaques de veículos -->
+  <section class="destaques">
+    <div class="section-header">
+      <h3 class="destaque-title">🚗 Veículos de Colecionador</h3>
+    </div>
+    <div class="card-grid">
+      <% veiculos.forEach(veiculo => { %>
+        <div class="car-card">
+          <img src="/css/<%= veiculo.imagem %>" alt="<%= veiculo.modelo %>">
+          <h4><%= veiculo.modelo %></h4>
+          <p><strong>Marca:</strong> <%= veiculo.marca %></p>
+          <p><strong>Ano:</strong> <%= veiculo.ano %></p>
+          <p><%= veiculo.descricao %></p>
+          <p><strong>Preço:</strong> R$ 
+            <%= typeof veiculo.preco === 'number' ? veiculo.preco.toLocaleString('pt-BR', { minimumFractionDigits: 2 }) : 'N/A' %>
+          </p>
+
+        </div>
+      <% }) %>
+    </div>
+  </section>
+
+  <footer>
+    <p>&copy; 2025 Concessionária AutoPrime - Todos os direitos reservados</p>
+  </footer>
+
+  <script>
+    function verParcelas(veiculoId) {
+      window.location.href = '/admin/venda/parcelas/' + veiculoId;
+    }
+
+function comprarVeiculo(veiculoId) {
+  window.location.href = '/admin/venda/comprar/' + veiculoId;
+} 
+  </script>
+
+</body>
+</html>

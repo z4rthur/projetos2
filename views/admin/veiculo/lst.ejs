@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <title>Veículos Cadastrados | Premium Motors</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+
+  <!-- Estilos -->
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+<body class="pagina-veiculo">
+
+  <!-- Cabeçalho -->
+  <header class="header">
+    <div class="header-top">
+      <h1 class="logo">AutoPrime</h1>
+      <div class="header-info">
+        <span><i class="fas fa-map-marker-alt"></i> Rua Paralela, 404 - Centro</span>
+        <span><i class="fas fa-phone-alt"></i> (53) 99702-3850</span>
+        <span><i class="fas fa-clock"></i> Seg a Sáb: 8h - 18h</span>
+        <span><i class="fas fa-user"></i> Painel</span>
+      </div>
+    </div>
+
+    <nav class="header-buttons">
+      <a href="/" class="btn add-btn"><i class="fas fa-home"></i> Início</a>
+      <a href="/admin/venda/lst" class="nav-btn"><i class="fas fa-receipt"></i> Vendas</a>
+      <a href="/admin/cliente/lst" class="nav-btn"><i class="fas fa-user"></i> Clientes</a>
+      <a href="https://wa.me/5553997023850" target="_blank" class="nav-btn"><i class="fab fa-whatsapp"></i> Atendimento</a>
+    </nav>
+  </header>
+
+  <header class="header-topo">
+    <div class="logo">AutoPrime</div>
+    <nav class="nav-header">
+      <a href="/admin/veiculo/add" class="add-highlight">Novo Veículo</a>
+    </nav>
+  </header>
+
+  <!-- Conteúdo -->
+  <main class="container">
+    <h2 class="titulo">Veículos Cadastrados</h2>
+
+    <div class="add-time">
+      <a href="/admin/veiculo/add" class="add-btn">+ Adicionar Veículo</a>
+    </div>
+
+    <% if (veiculos && veiculos.length > 0) { %>
+      <div class="card-grid">
+        <% veiculos.forEach(function(veiculo) { %>
+          <div class="car-card">
+            <img src="/css/<%= veiculo.imagem %>" alt="<%= veiculo.modelo %>">
+            <h4><%= veiculo.modelo %></h4>
+            <p><strong>Marca:</strong> <%= veiculo.marca %></p>
+            <p><strong>Ano:</strong> <%= veiculo.ano %></p>
+            <p><strong>Preço:</strong> R$ 
+              <%= (typeof veiculo.preco === 'number') 
+                  ? veiculo.preco.toFixed(2).replace('.', ',') 
+                  : 'N/A' %>
+            </p>
+            <div class="action-buttons">
+              <a href="/admin/veiculo/edt/<%= veiculo._id %>" class="btn-small edit-btn">
+                <i class="fas fa-pen"></i> Editar
+              </a>
+              <form action="/admin/veiculo/del/<%= veiculo._id %>" method="POST" style="display:inline;" onsubmit="return confirm('Tem certeza que deseja excluir este veículo?')">
+                <button type="submit" class="btn-small delete-btn">
+                  <i class="fas fa-trash-alt"></i> Excluir
+                </button>
+              </form>
+            </div>
+          </div>
+        <% }); %>
+      </div>
+    <% } else { %>
+      <p class="center">Nenhum veículo cadastrado.</p>
+    <% } %>
+  </main>
+
+  <!-- Rodapé -->
+  <footer>
+    <p>&copy; 2025 Concessionária AutoPrime - Todos os direitos reservados</p>
+  </footer>
+
+</body>
+</html>

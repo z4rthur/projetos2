@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Painel de Clientes | AutoPrime</title>
+
+  <!-- Estilos -->
+  <link rel="stylesheet" href="/css/style.css" />
+
+  <!-- FontAwesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
+</head>
+<body>
+
+  <header class="top-bar">
+    <div class="wrapper">
+      <h1 class="brand"><i class="fas fa-id-card-alt"></i> Painel de Clientes</h1>
+      <nav class="main-nav">
+        <a href="/" class="btn-nav"><i class="fas fa-home"></i> Início</a>
+        <a href="/admin/veiculo/lst" class="btn-nav"><i class="fas fa-car-side"></i> Veículos</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="wrapper">
+    <section class="page-header">
+      <h2><i class="fas fa-address-book"></i> Lista de Clientes</h2>
+      <div class="page-actions">
+        <a href="/admin/cliente/add" class="btn-primary">
+          <i class="fas fa-user-plus"></i> Novo Cliente
+        </a>
+      </div>
+    </section>
+
+    <!-- Barra de Pesquisa -->
+    <div class="search-box">
+      <input type="text" id="filterInput" placeholder="Filtrar por nome..." />
+      <i class="fas fa-search"></i>
+    </div>
+
+    <!-- Tabela de Clientes -->
+    <div class="table-wrapper">
+      <table class="custom-table" id="clientTable">
+        <thead>
+          <tr>
+            <th>Nome</th>
+            <th>CPF</th>
+            <th>Telefone</th>
+            <th>Email</th>
+            <th>Ações</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% if (typeof Clientes !== "undefined" && Clientes.length > 0) { %>
+            <% Clientes.forEach(cliente => { %>
+              <tr>
+                <td><%= cliente.nome %></td>
+                <td><%= cliente.cpf %></td>
+                <td><%= cliente.telefone %></td>
+                <td><%= cliente.email %></td>
+                <td class="table-actions">
+                  <a href="/admin/cliente/edt/<%= cliente._id %>" class="btn-edit">
+                    <i class="fas fa-edit"></i>
+                  </a>
+                  <a href="/admin/cliente/del/<%= cliente._id %>" class="btn-delete" onclick="return confirm('Confirma exclusão do cliente?')">
+                    <i class="fas fa-trash-alt"></i>
+                  </a>
+                </td>
+              </tr>
+            <% }) %>
+          <% } else { %>
+            <tr>
+              <td colspan="5" class="no-data">Nenhum cliente encontrado.</td>
+            </tr>
+          <% } %>
+        </tbody>
+      </table>
+    </div>
+  </main>
+
+  <!-- Script de filtro -->
+  <script>
+    document.getElementById('filterInput').addEventListener('keyup', function () {
+      const search = this.value.toLowerCase();
+      const rows = document.querySelectorAll('#clientTable tbody tr');
+
+      rows.forEach(row => {
+        const name = row.cells[0]?.textContent.toLowerCase();
+        row.style.display = name.includes(search) ? '' : 'none';
+      });
+    });
+  </script>
+
+</body>
+</html>

@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Novo Cliente | AutoPrime</title>
+
+  <!-- Estilos -->
+  <link rel="stylesheet" href="/css/style.css" />
+
+  <!-- Ícones -->
+  <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+        integrity="sha512-Fo3rlrZj/k7ujTnHg4C+Xyj8u6VdI1vZq6byk1n5RGRzN3kV7uJ7Md9Hz6b+pjHzWQyFZpE+2pVh/FFTxVQ5BA=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+<body>
+
+  <main class="container">
+    <header class="form-header">
+      <h1><i class="fas fa-user-plus"></i> Novo Cadastro de Cliente</h1>
+    </header>
+
+    <section class="form-section">
+      <form action="/admin/cliente/add" method="POST" class="cliente-form">
+        <div class="input-field">
+          <label for="nome">Nome Completo</label>
+          <input type="text" id="nome" name="nome" placeholder="Ex: Maria Oliveira" required />
+        </div>
+
+        <div class="input-field">
+          <label for="cpf">CPF</label>
+          <input type="text" id="cpf" name="cpf" placeholder="000.000.000-00" maxlength="14" required />
+        </div>
+
+        <div class="input-field">
+          <label for="telefone">Telefone</label>
+          <input type="text" id="telefone" name="telefone" placeholder="(11) 91234-5678" maxlength="15" required />
+        </div>
+
+        <div class="input-field">
+          <label for="email">E-mail</label>
+          <input type="email" id="email" name="email" placeholder="cliente@email.com" required />
+        </div>
+
+        <div class="form-buttons">
+          <button type="submit" class="btn save-btn">
+            <i class="fas fa-save"></i> Registrar
+          </button>
+          <button type="button" class="btn back-btn" onclick="history.back()">
+            <i class="fas fa-arrow-left"></i> Cancelar
+          </button>
+        </div>
+      </form>
+    </section>
+  </main>
+
+</body>
+</html>

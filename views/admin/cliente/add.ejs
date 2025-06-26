@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8" />
+  <title>Adicionar Cliente | AutoPrime</title>
+  <link rel="stylesheet" href="/css/style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+</head>
+<body class="pagina-venda">
+
+  <!-- Cabeçalho -->
+  <header class="header-topo">
+    <div class="container-header">
+      <div class="logo">
+        <i class="fas fa-car-side"></i> AutoPrime
+      </div>
+      <nav class="nav-header">
+        <a href="/">Início</a>
+        <a href="/admin/veiculo/lst">Veículos</a>
+        <a href="/admin/cliente/lst" class="add-highlight">Clientes</a>
+        <a href="/admin/venda/lst">Vendas</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Conteúdo principal -->
+  <main class="container">
+    <h2 class="titulo">Adicionar Novo Cliente</h2>
+
+    <form action="/admin/cliente/add" method="POST" class="formulario">
+
+      <div class="form-group">
+        <label for="nome">Nome:</label>
+        <input type="text" id="nome" name="nome" placeholder="Ex: João da Silva" required>
+      </div>
+
+      <div class="form-group">
+        <label for="telefone">Telefone:</label>
+        <input type="text" id="telefone" name="telefone" placeholder="(11) 91234-5678" required>
+      </div>
+
+      <div class="form-group">
+        <label for="email">E-mail:</label>
+        <input type="email" id="email" name="email" placeholder="joao@email.com" required>
+      </div>
+
+      <div class="form-group">
+        <label for="endereco">Endereço:</label>
+        <input type="text" id="endereco" name="endereco" placeholder="Rua Exemplo, 123 - SP" required>
+      </div>
+
+      <div class="form-group">
+        <label for="cpf">CPF:</label>
+        <input type="text" id="cpf" name="cpf" placeholder="000.000.000-00" required>
+      </div>
+
+      <div class="botoes-form">
+        <button type="submit" class="btn btn-adicionar">
+          <i class="fas fa-user-plus"></i> Cadastrar Cliente
+        </button>
+        <a href="/admin/cliente/lst" class="btn btn-voltar">
+          <i class="fas fa-arrow-left"></i> Voltar
+        </a>
+      </div>
+
+    </form>
+  </main>
+
+  <!-- Rodapé -->
+  <footer class="rodape">
+    <p>&copy; 2025 AutoPrime - Todos os direitos reservados.</p>
+  </footer>
+
+</body>
+</html>
